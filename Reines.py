@@ -4,6 +4,7 @@ import time
 
 tailleGrille = 100
 
+
 def main():
     lesReines = list(range(tailleGrille))
     printPositions(lesReines)
@@ -16,13 +17,10 @@ def main():
     print("temps  : ", stop_time * 1000)
 
 
-
 def recuit(X0):
     X = X0
     T = 500  # plus c'est haut plus longtemps on peut remonter la courbe (diminue au fur et a mesure)
     Nt = 100  # nb d'iteration
-    Tratio = 10 ** -6
-    Tarret = (Tratio ** (1/Nt))
     while F(X) != 0:
         for i in range(0, Nt):
             Y = voisin(X)
@@ -34,25 +32,25 @@ def recuit(X0):
 
 
 def decroissance(T):
-    value = (T - (T / 50)*2)
+    value = (T - (T / 50) * 2)
     return value
 
 
 def voisin(x):
     res = list(x)
-    pos = random.randint(0, tailleGrille-1)
-    pos2 = random.randint(0, tailleGrille-1)
+    pos = random.randint(0, tailleGrille - 1)
+    pos2 = random.randint(0, tailleGrille - 1)
     temp = res[pos]
     res[pos] = res[pos2]
     res[pos2] = temp
     return res
 
 
-def F(x):       # calcul combien de prises ("energie") le tableau a
+def F(x):  # calcul combien de prises ("energie") le tableau a
     energie = 0
     for i in range(0, tailleGrille):
         if estPrise(x, i, x[i]):
-            energie = energie+1
+            energie = energie + 1
     return energie
 
 
