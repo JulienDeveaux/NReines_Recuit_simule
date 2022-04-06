@@ -4,7 +4,8 @@ import random
 
 def main():
     for i in range(0, 20):
-        print(F(recuit(0)))
+        res = recuit(0)
+        print(round(F(res), 1))
 
 def recuit(X0):
     X = X0
@@ -12,7 +13,7 @@ def recuit(X0):
     Nt = 100  # nb d'iteration
     Tratio = 10 ** -6
     Tarret = (Tratio ** (1/Nt))
-    while T > Tarret:
+    while F(X) > -9.8 and T > Tarret:
         for i in range(0, Nt):
             Y = voisin(X)
             dF = F(Y) - F(X)
@@ -30,7 +31,7 @@ def decroissance(T):
         return value
 
 
-def voisin(x):  # inc ou decremente la valeur de +- 0.01
+def voisin(x):  # inc ou decremente la valeur de +- 0.1
     rand = random.uniform(-0.1, 0.1)
     return x + rand
 
